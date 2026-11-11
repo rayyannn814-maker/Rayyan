@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fahrur Rayyan Bahtiar - Personal Profile & Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#070f1e',
+                        cardBg: 'rgba(15, 28, 47, 0.65)',
+                        iceBlue: '#7dd3fc',
+                        iceCyan: '#38bdf8',
+                        iceLight: '#e0f2fe',
+                        iceDeep: '#0284c7',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #060b16;
+            color: #f0f9ff;
+            overflow-x: hidden;
+        }
+
+        /* Glowing backdrop effects - Ice Blue Palette */
+        .glow-blob {
+            position: absolute;
+            filter: blur(100px);
+            opacity: 0.35;
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* Glassmorphism Card Style - Frosted Ice Blue */
+        .glass-card {
+            background: rgba(14, 27, 46, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(125, 211, 252, 0.12);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(125, 211, 252, 0.45);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(56, 189, 248, 0.25);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #e0f2fe 0%, #38bdf8 50%, #0284c7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060b16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+
+        /* Progress Bar Animation */
+        .progress-line {
+            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-sky-400 selection:text-slate-900">
+
+    <!-- Background Decorative Ice Glows -->
+    <div class="glow-blob w-[500px] h-[500px] bg-sky-500 -top-20 -left-20"></div>
+    <div class="glow-blob w-[600px] h-[600px] bg-blue-600 top-1/3 -right-20"></div>
+    <div class="glow-blob w-[450px] h-[450px] bg-teal-400 bottom-10 left-1/4"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-card border-b border-sky-900/50 bg-opacity-80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                <span class="p-2 rounded-lg bg-gradient-to-tr from-sky-400 to-blue-600 text-slate-950 font-bold text-xs font-mono">FRB</span>
+                <span>Rayyan<span class="text-sky-300">.dev</span></span>
+            </a>
+            
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#about" class="text-sky-100 hover:text-sky-300 transition-colors">Tentang Saya</a>
+                <a href="#education" class="text-sky-100 hover:text-sky-300 transition-colors">Pendidikan</a>
+                <a href="#skills" class="text-sky-100 hover:text-sky-300 transition-colors">Keahlian</a>
+                <a href="#projects" class="text-sky-100 hover:text-sky-300 transition-colors">Proyek</a>
+                <a href="#hobbies" class="text-sky-100 hover:text-sky-300 transition-colors">Hobi</a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="md:hidden text-sky-200 hover:text-white focus:outline-none" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-t border-sky-950 px-4 pt-2 pb-4 space-y-2 text-center">
+            <a href="#about" class="block py-2 text-sky-100 hover:text-sky-300">Tentang Saya</a>
+            <a href="#education" class="block py-2 text-sky-100 hover:text-sky-300">Pendidikan</a>
+            <a href="#skills" class="block py-2 text-sky-100 hover:text-sky-300">Keahlian</a>
+            <a href="#projects" class="block py-2 text-sky-100 hover:text-sky-300">Proyek</a>
+            <a href="#hobbies" class="block py-2 text-sky-100 hover:text-sky-300">Hobi</a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 relative z-10 space-y-24">
+
+        <!-- HERO SECTION -->
+        <section id="about" class="pt-8 sm:pt-16 flex flex-col md:flex-row items-center justify-between gap-12">
+            <div class="flex-1 space-y-6 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs text-sky-300 border border-sky-400/30">
+                    <span class="w-2 h-2 rounded-full bg-sky-300 animate-ping"></span>
+                    <span>Sistem Informasi • Telkom University</span>
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                    Halo, Saya <br class="hidden sm:inline" />
+                    <span class="gradient-text">Fahrur Rayyan Bahtiar</span>
+                </h1>
+                
+                <p class="text-sky-100/80 text-base sm:text-lg max-w-xl leading-relaxed">
+                    Mahasiswa Sistem Informasi berusia <span class="text-white font-semibold">20 tahun</span> dengan ketertarikan mendalam pada <span class="text-sky-300">Web Development</span>, <span class="text-teal-300">Enterprise Architecture</span>, <span class="text-blue-300">Data Mining</span>, dan <span class="text-indigo-300">Software Security</span>. Berpengalaman merancang arsitektur sistem, menganalisis proses bisnis, dan membangun aplikasi web terintegrasi.
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4">
+                    <a href="#projects" class="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-400 to-blue-600 hover:from-sky-300 hover:to-blue-500 text-slate-950 font-bold shadow-lg shadow-sky-500/20 transition-all">
+                        Lihat Proyek <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                    <a href="#skills" class="px-6 py-3 rounded-xl glass-card text-sky-100 hover:text-white border border-sky-700/50 hover:border-sky-400 font-semibold transition-all">
+                        Eksplor Skill
+                    </a>
+                </div>
+            </div>
+
+            <!-- Profile Avatar Card -->
+            <div class="relative w-64 h-64 sm:w-80 sm:h-80 flex-shrink-0">
+                <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-sky-400 via-blue-500 to-teal-300 blur-xl opacity-40 animate-pulse"></div>
+                <div class="relative w-full h-full rounded-3xl glass-card border border-sky-300/20 p-4 flex flex-col items-center justify-center text-center overflow-hidden">
+                    <div class="w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-gradient-to-tr from-sky-300 to-blue-600 flex items-center justify-center shadow-inner mb-4">
+                        <span class="text-4xl sm:text-5xl font-black text-slate-950 tracking-widest">FRB</span>
+                    </div>
+                    <h2 class="text-xl font-bold text-white">Rayyan</h2>
+                    <p class="text-xs text-sky-200/70 mt-1">Information Systems Student</p>
+                    <div class="mt-4 flex gap-3 text-sky-300">
+                        <span class="p-2 rounded-lg bg-sky-950/60 hover:text-white transition-colors" title="Jakarta, Indonesia">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </span>
+                        <span class="p-2 rounded-lg bg-sky-950/60 hover:text-white transition-colors" title="Telkom University">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </span>
+                        <span class="p-2 rounded-lg bg-sky-950/60 hover:text-white transition-colors" title="Active Developer">
+                            <i class="fa-solid fa-code"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <section id="education" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <div class="p-2 rounded-lg bg-sky-400/10 text-sky-300">
+                    <i class="fa-solid fa-graduation-cap text-xl"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">Pendidikan</h2>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 sm:p-8 border border-sky-900/60 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-sky-400/5 rounded-bl-full pointer-events-none"></div>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-sky-400/10 text-sky-300 border border-sky-400/20">
+                            Kelas 24-04
+                        </span>
+                        <h3 class="text-xl font-bold text-white mt-2">Telkom University Jakarta Campus</h3>
+                        <p class="text-sky-200/80 font-medium">Program Studi Sistem Informasi (S1)</p>
+                    </div>
+                    <div class="text-left md:text-right">
+                        <span class="inline-block px-3 py-1 rounded-lg bg-sky-950/80 text-sm text-sky-200 border border-sky-800/60">
+                            <i class="fa-regular fa-calendar-check mr-2 text-sky-300"></i>Aktif / 20 Tahun
+                        </span>
+                    </div>
+                </div>
+                <hr class="my-4 border-sky-900/60" />
+                <p class="text-sm text-sky-100/70 leading-relaxed">
+                    Berfokus pada tata kelola teknologi informasi, perancangan basis data enterprise, pengujian keamanan sistem lunak, analisis proses bisnis, serta pengembangan aplikasi modern berskala enterprise.
+                </p>
+            </div>
+        </section>
+
+        <!-- TECHNICAL SKILLS SECTION -->
+        <section id="skills" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-lg bg-sky-400/10 text-sky-300">
+                        <i class="fa-solid fa-layer-group text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white">Keahlian & Kompetensi</h2>
+                </div>
+                <!-- Skill Filter Tabs -->
+                <div class="flex flex-wrap gap-2" id="skill-tabs">
+                    <button class="skill-tab-btn active px-4 py-1.5 rounded-lg text-xs font-semibold transition-all bg-sky-400 text-slate-950 font-bold" data-category="all">Semua</button>
+                    <button class="skill-tab-btn px-4 py-1.5 rounded-lg text-xs font-semibold transition-all bg-sky-950/80 text-sky-300 border border-sky-800/50 hover:text-white" data-category="dev">Development & Data</button>
+                    <button class="skill-tab-btn px-4 py-1.5 rounded-lg text-xs font-semibold transition-all bg-sky-950/80 text-sky-300 border border-sky-800/50 hover:text-white" data-category="architecture">Architecture & Process</button>
+                    <button class="skill-tab-btn px-4 py-1.5 rounded-lg text-xs font-semibold transition-all bg-sky-950/80 text-sky-300 border border-sky-800/50 hover:text-white" data-category="security">Security & ERP</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="skills-container">
+                <!-- Skill Cards generated dynamically via JavaScript -->
+            </div>
+        </section>
+
+        <!-- PROJECTS & MILESTONES SECTION -->
+        <section id="projects" class="space-y-8">
+            <div class="flex items-center gap-3">
+                <div class="p-2 rounded-lg bg-sky-400/10 text-sky-300">
+                    <i class="fa-solid fa-diagram-project text-xl"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">Proyek & Pencapaian</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Project 1: BloodConnect -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border border-sky-900/60 hover:border-sky-400/60">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 rounded-xl bg-sky-400/10 text-sky-300 text-lg">
+                                <i class="fa-solid fa-droplet"></i>
+                            </span>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-sky-400/10 text-sky-300 font-mono">Agile / Jira</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">BloodConnect</h3>
+                        <p class="text-sm text-sky-100/70 leading-relaxed">
+                            Manajemen lokasi penyimpanan stok darah dan pemantauan suhu penyimpanan secara real-time yang dikembangkan dengan metodologi Agile via Jira.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-sky-900/50 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/40">Software Dev</span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/40">Jira</span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/40">IoT Monitoring</span>
+                    </div>
+                </div>
+
+                <!-- Project 2: Oemar Chicken Steak -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border border-sky-900/60 hover:border-sky-400/60">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 rounded-xl bg-teal-400/10 text-teal-300 text-lg">
+                                <i class="fa-solid fa-file-invoice-dollar"></i>
+                            </span>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-teal-400/10 text-teal-300 font-mono">Financial Analysis</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Oemar Chicken Steak</h3>
+                        <p class="text-sm text-sky-100/70 leading-relaxed">
+                            Analisis transaksi keuangan akuntansi, pencatatan neraca saldo, serta evaluasi arus kas bisnis kuliner.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-sky-900/50 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/40">Accounting</span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/40">Trial Balance</span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/40">Financial Audit</span>
+                    </div>
+                </div>
+
+                <!-- Project 3: Air Quality Clustering -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border border-sky-900/60 hover:border-sky-400/60">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 rounded-xl bg-blue-400/10 text-blue-300 text-lg">
+                                <i class="fa-solid fa-wind"></i>
+                            </span>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-blue-400/10 text-blue-300 font-mono">Python / ML</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Air Quality Clustering</h3>
+                        <p class="text-sm text-sky-100/70 leading-relaxed">
+                            Model Data Mining menggunakan algoritma K-Means Clustering di Python untuk segmentasi pola kualitas udara wilayah Jakarta.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-sky-900/50 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/40">Python</span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/40">K-Means</span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/40">Data Mining</span>
+                    </div>
+                </div>
+
+                <!-- Project 4: IndoGrosir BPR -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border border-sky-900/60 hover:border-sky-400/60">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 rounded-xl bg-cyan-400/10 text-cyan-300 text-lg">
+                                <i class="fa-solid fa-truck-ramp-box"></i>
+                            </span>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-400/10 text-cyan-300 font-mono">ERP & BPMN</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">IndoGrosir BPR</h3>
+                        <p class="text-sm text-sky-100/70 leading-relaxed">
+                            Redesain Business Process Reengineering (BPR) pengadaan barang (procurement) ke dalam sistem web ERP terintegrasi.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-sky-900/50 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/40">Procurement</span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/40">BPR</span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/40">ERP System</span>
+                    </div>
+                </div>
+
+                <!-- Project 5: Web Security Audit -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border border-sky-900/60 hover:border-sky-400/60">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 rounded-xl bg-indigo-400/10 text-indigo-300 text-lg">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </span>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-indigo-400/10 text-indigo-300 font-mono">Cybersecurity</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Web Security Audit</h3>
+                        <p class="text-sm text-sky-100/70 leading-relaxed">
+                            Pengujian keamanan situs web terhadap celah Cross-Site Scripting (XSS) dan serangan Brute Force pada lingkungan DVWA menggunakan Burp Suite.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-sky-900/50 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/40">Burp Suite</span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/40">XSS</span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-sky-950 text-sky-200 border border-sky-800/40">DVWA</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- HOBBIES & INTERESTS SECTION -->
+        <section id="hobbies" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <div class="p-2 rounded-lg bg-sky-400/10 text-sky-300">
+                    <i class="fa-solid fa-heart text-xl"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">Hobi & Aktivitas</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Swimming Card -->
+                <div class="glass-card rounded-2xl p-6 border border-sky-900/60 flex items-center gap-5 hover:border-sky-400/60">
+                    <div class="w-16 h-16 rounded-2xl bg-sky-400/10 text-sky-300 flex items-center justify-center text-3xl flex-shrink-0">
+                        <i class="fa-solid fa-person-swimming"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Berenang (Swimming)</h3>
+                        <p class="text-xs text-sky-100/70 mt-1">
+                            Aktivitas olahraga air favorit untuk menjaga kebugaran fisik, melatih daya tahan, dan menjernihkan pikiran.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cycling Card -->
+                <div class="glass-card rounded-2xl p-6 border border-sky-900/60 flex items-center gap-5 hover:border-teal-400/60">
+                    <div class="w-16 h-16 rounded-2xl bg-teal-400/10 text-teal-300 flex items-center justify-center text-3xl flex-shrink-0">
+                        <i class="fa-solid fa-person-biking"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Bersepeda (Cycling)</h3>
+                        <p class="text-xs text-sky-100/70 mt-1">
+                            Mengeksplorasi rute-rute baru, menikmati suasana luar ruangan, serta mengasah fokus dan ketahanan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-sky-900/60 py-8 relative z-10 glass-card">
+        <div class="max-w-6xl mx-auto px-4 text-center space-y-3">
+            <p class="text-sky-200/80 text-sm">
+                &copy; <span id="year"></span> <strong class="text-white">Fahrur Rayyan Bahtiar</strong>. Built with passion & modern web technologies.
+            </p>
+            <p class="text-xs text-sky-300/60">
+                Information Systems Student at Telkom University (Jakarta Campus)
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Interactive Code -->
+    <script>
+        // Skills Data Array
+        const skillsData = [
+            {
+                name: 'Web Development (Laravel)',
+                category: 'dev',
+                icon: 'fa-brands fa-laravel',
+                color: 'text-sky-300',
+                progress: 85,
+                desc: 'Pengembangan aplikasi web MVC dengan framework Laravel.'
+            },
+            {
+                name: 'Database Design',
+                category: 'dev',
+                icon: 'fa-solid fa-database',
+                color: 'text-cyan-300',
+                progress: 88,
+                desc: 'Perancangan ERD, skema relasional, dan optimasi query SQL.'
+            },
+            {
+                name: 'Data Mining (Python & K-Means)',
+                category: 'dev',
+                icon: 'fa-brands fa-python',
+                color: 'text-blue-300',
+                progress: 80,
+                desc: 'Pengolahan dataset, klasterisasi K-Means, dan analisis data.'
+            },
+            {
+                name: 'Business Process Analysis (BPA)',
+                category: 'architecture',
+                icon: 'fa-solid fa-chart-line',
+                color: 'text-teal-300',
+                progress: 85,
+                desc: 'Pemetaan proses bisnis, pemodelan BPMN, dan analisis BPR.'
+            },
+            {
+                name: 'Enterprise Architecture (TOGAF)',
+                category: 'architecture',
+                icon: 'fa-solid fa-sitemap',
+                color: 'text-sky-400',
+                progress: 78,
+                desc: 'Penerapan framework TOGAF untuk arsitektur enterprise.'
+            },
+            {
+                name: 'Visual Modeling (Visual Paradigm / draw.io)',
+                category: 'architecture',
+                icon: 'fa-solid fa-pen-ruler',
+                color: 'text-iceBlue',
+                progress: 90,
+                desc: 'Dokumentasi diagram UML, Use Case, Flowchart, dan arsitektur.'
+            },
+            {
+                name: 'Software Testing & Security (Burp Suite)',
+                category: 'security',
+                icon: 'fa-solid fa-user-shield',
+                color: 'text-indigo-300',
+                progress: 82,
+                desc: 'Penetration testing celah XSS, Brute Force pada DVWA.'
+            },
+            {
+                name: 'SAP HCM Configuration',
+                category: 'security',
+                icon: 'fa-solid fa-network-wired',
+                color: 'text-blue-400',
+                progress: 75,
+                desc: 'Konfigurasi modul SAP Human Capital Management.'
+            }
+        ];
+
+        // Render Skill Cards Function
+        function renderSkills(filterCategory = 'all') {
+            const container = document.getElementById('skills-container');
+            container.innerHTML = '';
+
+            const filtered = filterCategory === 'all' 
+                ? skillsData 
+                : skillsData.filter(item => item.category === filterCategory);
+
+            filtered.forEach(skill => {
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-2xl p-6 border border-sky-900/60 flex flex-col justify-between space-y-4';
+                card.innerHTML = `
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <i class="${skill.icon} ${skill.color} text-2xl"></i>
+                                <h3 class="font-bold text-white text-base">${skill.name}</h3>
+                            </div>
+                            <span class="text-xs font-mono text-sky-300 font-semibold">${skill.progress}%</span>
+                        </div>
+                        <p class="text-xs text-sky-100/70 leading-relaxed">${skill.desc}</p>
+                    </div>
+                    <div class="w-full bg-sky-950/80 rounded-full h-2 overflow-hidden border border-sky-800/40">
+                        <div class="progress-line bg-gradient-to-r from-sky-300 via-blue-400 to-teal-300 h-2 rounded-full" style="width: ${skill.progress}%"></div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Initialize Page Interactions
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set dynamic current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Initial render of skills
+            renderSkills('all');
+
+            // Skill Tab Filter Functionality
+            const tabButtons = document.querySelectorAll('.skill-tab-btn');
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabButtons.forEach(b => {
+                        b.classList.remove('bg-sky-400', 'text-slate-950', 'font-bold');
+                        b.classList.add('bg-sky-950/80', 'text-sky-300');
+                    });
+                    btn.classList.remove('bg-sky-950/80', 'text-sky-300');
+                    btn.classList.add('bg-sky-400', 'text-slate-950', 'font-bold');
+
+                    const category = btn.getAttribute('data-category');
+                    renderSkills(category);
+                });
+            });
+
+            // Mobile Menu Toggle Functionality
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu on link click
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
